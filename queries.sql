@@ -29,3 +29,18 @@ from(
 where t1.entries>10 limit 10;
 
 select fid, min(rec_time) as s_time, max(rec_time) as e_time from flight group by fid limit 10;
+
+
+CREATE TABLE airports
+(
+	id int,
+	name varchar(255),
+	city varchar(100),
+	country varchar(100),
+	lat decimal(11,8),
+	lon decimal(11,8)
+);
+
+LOAD DATA LOCAL INFILE '~/Desktop/sohban/flight/airports.dat.csv' INTO TABLE airports
+FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'  
+(@col1,@col2,@col3,@col4,@col5,@col6,@col7,@col8,@col9,@col10,@col11,@col12) set id=@col1, name=@col2, city=@col3, country=@col4, lat=@col7, lon=@col8;
