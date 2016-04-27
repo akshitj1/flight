@@ -44,3 +44,12 @@ CREATE TABLE airports
 LOAD DATA LOCAL INFILE '~/Desktop/sohban/flight/airports.dat.csv' INTO TABLE airports
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'  
 (@col1,@col2,@col3,@col4,@col5,@col6,@col7,@col8,@col9,@col10,@col11,@col12) set id=@col1, name=@col2, city=@col3, country=@col4, lat=@col7, lon=@col8;
+
+CREATE TABLE journeys
+(
+	fid varchar(12),
+	src int,
+	dest int,
+	ttime int,
+	dist int
+);
