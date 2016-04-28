@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 #             resolution='l',projection='merc',\
 #             lat_0=40.,lon_0=-20.,lat_ts=20.)
 m = Basemap(projection='merc',llcrnrlat=-80,urcrnrlat=80,\
-            llcrnrlon=-180,urcrnrlon=180,lat_ts=20,resolution='c')
+            llcrnrlon=-180,urcrnrlon=180,lat_ts=20,resolution='f')
 # nylat, nylon are lat/lon of New York
 nylat = 40.78; nylon = -73.98
 # lonlat, lonlon are lat/lon of London.

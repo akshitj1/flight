@@ -32,6 +32,7 @@ where t1.entries>10 limit 10;
 
 select fid, min(rec_time) as s_time, max(rec_time) as e_time from flight group by fid limit 10;
 
+update flight set fid=fid+'a' where fid=fid and rec_time<time
 
 CREATE TABLE airports
 (
@@ -60,4 +61,15 @@ select * from (select fid,floor(dist*1000/ttime) as speed from journeys)as t whe
 
 #flights bw same airports
 select * from (select src, dest,count(*) as num from journeys group by src, dest) as t where t.src!=t.dest order by t.num desc limit 20;
-select fid, ttime from journeys where src=8890 and dest=3576;
+set @a1=3469, @a2=3670;
+select fid, dist, ttime from journeys where (src=@a1 and dest=@a2) or (src=@a2 and dest=@a1) order by ttime
+INTO OUTFILE '/tmp/8890_3576.csv'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
+
+select * from journeys
+INTO OUTFILE '/tmp/jrny_data.csv'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
