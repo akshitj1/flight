@@ -1,4 +1,4 @@
-# flight
+# Flight routes Anomalies Detection
 Description:
 This project aims at finding anomalies in the flight routes.
 Guide: Dr. Sobhan Babu
