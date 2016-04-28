@@ -9,6 +9,8 @@ CREATE TABLE flight
 	lat decimal(8,4),
 	lon decimal(8,4)
 );
+ALTER TABLE flight ADD INDEX fidx (fid);
+ALTER TABLE flight ADD INDEX rectimeidx (rec_time);
 
 LOAD DATA LOCAL INFILE '~/Desktop/fdata.csv' INTO TABLE flight
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'  
@@ -53,3 +55,9 @@ CREATE TABLE journeys
 	ttime int,
 	dist int
 );
+
+select * from (select fid,floor(dist*1000/ttime) as speed from journeys)as t where t.speed=max(t.speed);
+
+#flights bw same airports
+select * from (select src, dest,count(*) as num from journeys group by src, dest) as t where t.src!=t.dest order by t.num desc limit 20;
+select fid, ttime from journeys where src=8890 and dest=3576;
